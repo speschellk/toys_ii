@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Instantiation Tree instance can be instantiated with a value 1`] = `
+Tree {
+  "children": Array [],
+  "value": 3,
+}
+`;
+
+exports[`Instantiation Tree is instantiated using the new keyword 1`] = `
+Tree {
+  "children": Array [],
+  "value": undefined,
+}
+`;
