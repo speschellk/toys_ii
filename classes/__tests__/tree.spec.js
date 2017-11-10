@@ -13,7 +13,7 @@ describe('Instantiation', () => {
     expect(tree.children).toHaveLength(0);
   });
 
-  test('Tree instance can be instantiated with a value', () => {
+  test('Tree class can be instantiated with a value', () => {
     const tree = new Tree(3);
     expect(tree).toMatchSnapshot();
   });
@@ -27,7 +27,7 @@ describe('addChild method', () => {
   tree.addChild(6);
   tree.children[1].addChild(7);
 
-  test("addChild method adds a tree to the parent's children array", () => {
+  test('addChild method adds a tree to the parent\'s children array', () => {
     expect(tree.children).toContainEqual(child);
     expect(tree.children[1].children).toContainEqual(grandchild);
   });

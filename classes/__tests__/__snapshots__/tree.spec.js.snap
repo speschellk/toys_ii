@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Instantiation Tree instance can be instantiated with a value 1`] = `
+exports[`Instantiation Tree class can be instantiated with a value 1`] = `
 Tree {
   "children": Array [],
   "value": 3,

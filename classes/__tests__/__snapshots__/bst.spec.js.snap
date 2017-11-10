@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Instantiation BST class can be instantiated with a value 1`] = `
+BinaryTree {
+  "left": null,
+  "right": null,
+  "value": 3,
+}
+`;
+
+exports[`Instantiation BST is instantiated using the new keyword 1`] = `
+BinaryTree {
+  "left": null,
+  "right": null,
+  "value": undefined,
+}
+`;
