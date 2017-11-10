@@ -1,4 +1,4 @@
-const BST = require('../bst');
+const { BST, bst, bstFull, bstComplete, bstPerfect } = require('../bst');
 
 describe('Instantiation', () => {
   const bst = new BST();
@@ -20,48 +20,54 @@ describe('Instantiation', () => {
 });
 
 describe('insert method', () => {
-  const bst = new BST(10);
-  bst.insert()
 
   test('insert method adds smaller and equal values on the left', () => {
-
+    bst.insert(1);
+    bst.insert(1);
+    expect(bst.left.left.left.value).toEqual(1);
+    expect(bst.left.left.left.left.value).toEqual(1);
   });
 
-  test('insert method adds greater values on the right', () => {});
+  test('insert method adds greater values on the right', () => {
+    bst.insert(40);
+    expect(bst.right.right.value).toEqual(40);
+  });
 });
 
 describe('contains method', () => {
-  const bst = new BST(10);
 
-  test('contains method returns true for values contained in the tree', () => {});
+  test('contains method returns true for values contained in the tree', () => {
+    expect(bst.contains(7)).toEqual(true);
+  });
 
-  test('contains method returns false for values not contained in the tree', () => {});
+  test('contains method returns false for values not contained in the tree', () => {
+    expect(bst.contains(50)).toEqual(false);
+  });
 });
 
-describe.skip('Traversal methods', () => {
-  const bst = new BST(1);
+describe('Traversal methods', () => {
 
   test('TraverseDF method calls a callback on each value', () => {
     const callback = jest.fn();
-    bst.traverseDF(callback);
-    expect(callback).toHaveBeenCalledTimes(8);
+    bstPerfect.traverseDF(callback);
+    expect(callback).toHaveBeenCalledTimes(7);
   });
 
   test('TraverseDF traverses the tree in depth-first order', () => {
     const values = [];
-    bst.traverseDF(val => values.push(val));
-    expect(values).toMatchObject([1, 2, 5, 6, 3, 4, 7, 8]);
+    bstPerfect.traverseDF(val => values.push(val));
+    expect(values).toMatchObject([10, 5, 3, 8, 20, 15, 25]);
   });
 
   test('TraverseBF method calls a callback on each value', () => {
     const callback = jest.fn();
-    bst.traverseBF(callback);
-    expect(callback).toHaveBeenCalledTimes(8);
+    bstPerfect.traverseBF(callback);
+    expect(callback).toHaveBeenCalledTimes(7);
   });
 
   test('TraverseBF method traverses the tree in breadth-first order', () => {
     const values = [];
-    bst.traverseBF(val => values.push(val));
-    expect(values).toMatchObject([1, 2, 3, 4, 5, 6, 7, 8]);
+    bstPerfect.traverseBF(val => values.push(val));
+    expect(values).toMatchObject([10, 5, 20, 3, 8, 15, 25]);
   });
 });
