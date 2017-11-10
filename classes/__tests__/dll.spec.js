@@ -45,6 +45,16 @@ describe('removeHead method', () => {
     expect(list.head.value).toEqual(2);
   });
 
+  test('Sets next node\s prev property to null', () => {
+    const list = new DoublyLinkedList();
+    list.addToTail(1);
+    list.addToTail(2);
+    expect(list.head.next.prev.value).toEqual(1);
+
+    list.removeHead();
+    expect(list.head.prev).toBeNull();
+  });
+
   test('Does not alter tail property when more than one node in list', () => {
     list.addToTail(1);
     list.addToTail(2);
