@@ -1,4 +1,4 @@
-class Queue {
+module.exports = class Queue {
   constructor() {
     this.storage = {};
     this.start = 0;
@@ -10,6 +10,9 @@ class Queue {
   }
 
   dequeue() {
+    if (!this.size()) {
+      return null;
+    }
     const value = this.storage[this.start];
     delete this.storage[this.start++];
     return value;
@@ -24,6 +27,6 @@ class Queue {
   }
 
   isEmpty() {
-    return size() ? false : true;
+    return this.size() ? false : true;
   }
 }
