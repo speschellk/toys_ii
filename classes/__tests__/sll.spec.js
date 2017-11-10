@@ -62,12 +62,17 @@ describe('contains method', () => {
   test('Returns true when the list contains the target value', () => {
     expect(list.contains(1)).toEqual(true);
     expect(list.contains(3)).toEqual(true);
-  })
+  });
 
   test('Returns false when the list does not contain the target value', () => {
     expect(list.contains(10)).toEqual(false);
     expect(list.contains(-3)).toEqual(false);
-  })
+  });
+
+  test('Does not alter original list', () => {
+    expect(list.head.value).toEqual(1);
+    expect(list.tail.value).toEqual(3);
+  });
 });
 
 describe('isEmpty method', () => {
