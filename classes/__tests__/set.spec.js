@@ -1,136 +1,120 @@
 const Set = require('../set');
 
-describe('add method', () => {
-  test('Adds a value to the set', () => {
-    const set = new Set();
-    const value = 1;
-    const values = [];
-    set.add(value);
-    values.push(value);
-    expect(set.__values).toMatchObject(values);
-  });
-
-  test('Increments size property when adding a value to the set', () => {
-    const set = new Set();
-    expect(set.size).toEqual(0);
-    set.add(5);
-    expect(set.size).toEqual(1);
-  });
-
-  test('Does not add duplicate values to the set', () => {
-    const set = new Set();
-    set.add(2);
-    expect(set.add(2)).toEqual(false);
-    expect(set.__values).toMatchObject([2]);
-  });
-});
-
-describe('clear method', () => {
-  let set;
+describe('Set class', () => {
+  const set = new Set();
+  let values;
 
   beforeEach(() => {
-    set = new Set();
-    set.add(1);
-    set.add(2);
-  });
-
-  test('Removes all values from the set', () => {
+    values = [1, 2, 3, 4, 5];
     set.clear();
-    expect(set.__values).toMatchObject([]);
+
+    for (let value of values) {
+      set.add(value);
+    }
   });
 
-  test('Returns undefined', () => {
-    expect(set.clear()).toEqual(undefined);
-  });
-});
+  describe('add method', () => {
+    test('Adds a value to the set', () => {
+      expect(set.__values).toMatchObject(values);
+    });
 
-describe('delete method', () => {
-  let set;
+    test('Increments size property when adding a value to the set', () => {
+      expect(set.size).toEqual(5);
+      set.add(6);
+      expect(set.size).toEqual(6);
+    });
 
-  beforeEach(() => {
-    set = new Set();
-    set.add(1);
-    set.add(2);
-    set.add(3);
-  });
-
-  test('Deletes a target node contained in the set', () => {
-    set.delete(1);
-    expect(set.__values).toMatchObject([2, 3]);
+    test('Does not add duplicate values to the set', () => {
+      expect(set.add(2)).toEqual(false);
+      expect(set.__values).toMatchObject(values);
+    });
   });
 
-  test('Returns true when the target node is deleted', () => {
-    expect(set.delete(1)).toEqual(true);
+  describe('clear method', () => {
+    test('Removes all values from the set', () => {
+      set.clear();
+      expect(set.__values).toMatchObject([]);
+    });
+
+    test('Returns undefined', () => {
+      expect(set.clear()).toEqual(undefined);
+    });
   });
 
-  test('Returns false if the target node is not found', () => {
-    expect(set.delete(70)).toEqual(false);
-  });
-});
+  describe('delete method', () => {
+    test('Deletes a target node contained in the set', () => {
+      const val = 1;
+      const index = values.indexOf(val);
+      values.splice(index, 1);
 
-describe('entries method', () => {
-  const set = new Set();
-  set.add(1);
-  set.add(2);
-  set.add(3);
+      set.delete(val);
+      expect(set.__values).toMatchObject(values);
+    });
 
-  test('Returns an array', () => {
-    expect(set.entries()).toBeInstanceOf(Array);
-  });
-  test('Returns all entries in set in key value pairs', () => {
-    expect(set.entries()).toMatchObject([[1, 1], [2, 2], [3, 3]]);
-  });
-});
+    test('Returns true when the target node is deleted', () => {
+      const valInSet = values[0];
+      expect(set.delete(valInSet)).toEqual(true);
+    });
 
-describe('forEach method', () => {
-  const set = new Set();
-  set.add(1);
-  set.add(2);
-  set.add(3);
-
-  test('Calls a callback on every value in the set', () => {
-    const callback = jest.fn();
-    set.forEach(callback);
-    expect(callback).toHaveBeenCalledTimes(set.size);
-  });
-  test('Calls a callback with a given context', () => {
-    const results = [];
-    const arr = ['Jeeves', 'Tucker', 'Birb'];
-    const callback = item => results.push(item);
-    set.forEach(callback, arr);
-    expect(results).toMatchObject(arr);
-  });
-});
-
-describe('has method', () => {
-  const set = new Set();
-  set.add(1);
-  set.add(2);
-  set.add(3);
-
-  test('Returns true if target is contained in set', () => {
-    expect(set.has(2)).toEqual(true);
+    test('Returns false if the target node is not found', () => {
+      const valNotInSet = null;
+      expect(set.delete(valNotInSet)).toEqual(false);
+    });
   });
 
-  test('Returns false if target not in set', () => {
-    expect(set.has(20)).toEqual(false);
+  describe('entries method', () => {
+    test('Returns an array', () => {
+      expect(set.entries()).toBeInstanceOf(Array);
+    });
+    test('Returns all entries in set in key value pairs', () => {
+      const entries = [];
+      for (let value of values) {
+        entries.push([value, value]);
+      }
+      expect(set.entries()).toMatchObject(entries);
+    });
   });
-});
 
-describe('values method', () => {
-  const set = new Set();
-  set.add(1);
-  set.add(2);
-  set.add(3);
+  describe('forEach method', () => {
 
-  test('Returns an array', () => {
-    expect(set.values()).toBeInstanceOf(Array);
+    test('Calls a callback on every value in the set', () => {
+      const callback = jest.fn();
+      set.forEach(callback);
+      expect(callback).toHaveBeenCalledTimes(set.size);
+    });
+    test('Calls a callback with a given context', () => {
+      const results = [];
+      const arr = ['Jeeves', 'Tucker', 'Birb', 'Lucy', 'Griffon'];
+      const callback = item => results.push(item);
+      set.forEach(callback, arr);
+      expect(results).toMatchObject(arr);
+    });
   });
-  test('Returns all values in set', () => {
-    expect(set.values()).toMatchObject([1, 2, 3]);
+
+  describe('has method', () => {
+
+    test('Returns true if target is contained in set', () => {
+      const valInSet = values[2];
+      expect(set.has(valInSet)).toEqual(true);
+    });
+
+    test('Returns false if target not in set', () => {
+      const valNotInSet = null
+      expect(set.has(valNotInSet)).toEqual(false);
+    });
   });
-  test('Returns empty array if set is empty', () => {
-    const set = new Set();
-    expect(set.values()).toMatchObject([]);
+
+  describe('values method', () => {
+
+    test('Returns an array', () => {
+      expect(set.values()).toBeInstanceOf(Array);
+    });
+    test('Returns all values in set', () => {
+      expect(set.values()).toMatchObject(values);
+    });
+    test('Returns empty array if set is empty', () => {
+      const set = new Set();
+      expect(set.values()).toMatchObject([]);
+    });
   });
 });

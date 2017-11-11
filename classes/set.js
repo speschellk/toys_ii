@@ -15,10 +15,11 @@ module.exports = class Set {
 
   clear() {
     this.__values = [];
+    this.size = 0;
   }
 
   delete(target) {
-    for (let i = 0; i < this.__values.length; i ++) {
+    for (let i = 0; i < this.__values.length; i++) {
       if (this.__values[i] === target) {
         this.__values.splice(i, 1);
         return true;
@@ -28,11 +29,9 @@ module.exports = class Set {
   }
 
   entries() {
-    const entries = [];
-    for (let value of this.__values) {
-      entries.push([value, value]);
-    }
-    return entries;
+    return this.__values.map(value => {
+      return [value, value];
+    });
   }
 
   forEach(cb, thisArg) {
@@ -55,4 +54,4 @@ module.exports = class Set {
   values() {
     return this.__values;
   }
-}
+};
