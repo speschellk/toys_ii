@@ -1,6 +1,7 @@
 const { bubbleSort } = require('../bubble');
 const { insertionSort } = require('../insertion');
 const { selectionSort } = require('../selection');
+const { MergeSort } = require('../merge');
 
 describe('Sorts correctly sort array of inputs', () => {
   let unsorted1, unsorted2, nearlySorted;
@@ -28,5 +29,11 @@ describe('Sorts correctly sort array of inputs', () => {
     expect(selectionSort(unsorted1)).toMatchObject(sorted1);
     expect(selectionSort(unsorted2)).toMatchObject(sorted2);
     expect(selectionSort(nearlySorted)).toMatchObject(sorted3);
+  });
+  test('mergeSort correctly sorts', () => {
+    const m = new MergeSort();
+    expect(m.mergeSort(unsorted1)).toMatchObject(sorted1);
+    expect(m.mergeSort(unsorted2)).toMatchObject(sorted2);
+    expect(m.mergeSort(nearlySorted)).toMatchObject(sorted3);
   });
 });
