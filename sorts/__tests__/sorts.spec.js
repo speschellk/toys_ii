@@ -3,6 +3,7 @@ const { insertionSort } = require('../insertion');
 const { selectionSort } = require('../selection');
 const { MergeSort } = require('../merge');
 const { QuickSort } = require('../quick');
+const { shellSort } = require('../shell');
 
 describe('Sorts correctly sort array of inputs', () => {
   let unsorted1, unsorted2, nearlySorted;
@@ -42,5 +43,10 @@ describe('Sorts correctly sort array of inputs', () => {
     expect(q.quickSort(unsorted1)).toMatchObject(sorted1);
     expect(q.quickSort(unsorted2)).toMatchObject(sorted2);
     expect(q.quickSort(nearlySorted)).toMatchObject(sorted3);
+  });
+  test('shellSort correctly sorts', () => {
+    expect(shellSort(unsorted1)).toMatchObject(sorted1);
+    expect(shellSort(unsorted2)).toMatchObject(sorted2);
+    expect(shellSort(nearlySorted)).toMatchObject(sorted3);
   });
 });
