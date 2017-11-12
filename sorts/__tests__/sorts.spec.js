@@ -5,6 +5,7 @@ const { MergeSort } = require('../merge');
 const { QuickSort } = require('../quick');
 const { shellSort } = require('../shell');
 const { HeapSort } = require('../heap');
+const { countingSort } = require('../counting');
 
 describe('Sorts correctly sort array of inputs', () => {
   let unsorted1, unsorted2, nearlySorted;
@@ -55,5 +56,8 @@ describe('Sorts correctly sort array of inputs', () => {
     const h2 = new HeapSort(unsorted2);
     expect(h1.heapSort(unsorted1)).toMatchObject(sorted1);
     expect(h2.heapSort(unsorted2)).toMatchObject(sorted2);
+  });
+  test('countingSort correctly sorts', () => {
+    expect(countingSort(nearlySorted)).toMatchObject(sorted3);
   });
 });
