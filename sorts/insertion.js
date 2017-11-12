@@ -19,10 +19,6 @@ class InsertionSort {
     }
     return a;
   }
-
-  returnSort() {
-    return this.insertionSort;
-  }
 };
 
 const insertionSort = new InsertionSort().insertionSort;
