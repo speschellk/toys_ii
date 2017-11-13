@@ -3,9 +3,9 @@ class CountingSort {
     this.bigO = 'O(n + k)'; // k is number of lists
     this.avgTime = this.bigO;
     this.nearlySortedTime = this.bigO;
-    this.space = 'O(n)';
-    this.adaptive = false;
-    this.stable = false;
+    this.space = 'O(k)';
+    this.adaptive = false; // some implementations are adaptive
+    this.stable = true;
   }
 
   countingSort(a) {

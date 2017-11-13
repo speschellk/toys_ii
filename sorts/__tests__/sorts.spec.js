@@ -6,6 +6,7 @@ const { QuickSort } = require('../quick');
 const { shellSort } = require('../shell');
 const { HeapSort } = require('../heap');
 const { countingSort } = require('../counting');
+const { RadixSort } = require('../radix');
 
 describe('Sorts correctly sort array of inputs', () => {
   let unsorted1, unsorted2, nearlySorted;
@@ -59,5 +60,10 @@ describe('Sorts correctly sort array of inputs', () => {
   });
   test('countingSort correctly sorts', () => {
     expect(countingSort(nearlySorted)).toMatchObject(sorted3);
+  });
+  test('radixSort correctly sorts', () => {
+    const r = new RadixSort();
+    expect(r.radixSort(unsorted1)).toMatchObject(sorted1);
+    expect(r.radixSort(nearlySorted)).toMatchObject(sorted3);
   });
 });
