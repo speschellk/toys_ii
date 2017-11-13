@@ -9,8 +9,8 @@ class CountingSort {
   }
 
   countingSort(a) {
-    let numCounts = [];
-    let sorted = [];
+    const numCounts = [];
+    const sorted = [];
     let sortIndex = 0;
     let count;
 
