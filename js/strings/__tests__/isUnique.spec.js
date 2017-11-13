@@ -1,4 +1,4 @@
-const { isUnique, isUniqueSet, isUniques } = require('../isUnique');
+const { isUnique, isUniqueSet } = require('../isUnique');
 
 describe('isUnique', () => {
   test('Returns null when given no string as input', () => {
