@@ -1,6 +1,6 @@
 class CountingSort {
   constructor() {
-    this.bigO = 'O(n)';
+    this.bigO = 'O(n + k)'; // k is number of lists
     this.avgTime = this.bigO;
     this.nearlySortedTime = this.bigO;
     this.space = 'O(n)';
@@ -10,27 +10,21 @@ class CountingSort {
 
   countingSort(a) {
     let numCounts = [];
-    let sortedArray = [];
+    let sorted = [];
     let sortIndex = 0;
     let count;
 
     for (let num of a) {
-      if (numCounts[num]) {
-        numCounts[num] = numCounts[num] + 1;
-      } else {
-        numCounts[num] = 1;
-      }
+      numCounts[num] = numCounts[num] ? ++numCounts[num] : 1;
     }
 
     for (let i = 0; i < numCounts.length; i++) {
       count = numCounts[i];
-
       for (let j = 0; j < count; j++) {
-        sortedArray[sortIndex] = i;
-        sortIndex++;
+        sorted[sortIndex++] = i;
       }
     }
-    return sortedArray;
+    return sorted;
   }
 }
 
