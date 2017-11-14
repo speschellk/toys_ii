@@ -1,3 +1,4 @@
+const _ = require('lodash');
 /*
 Implement a method to perform basic string compression using the counts of repeated characters. For example, the string aabcccccaaa would become a2b1c5a3.
 
@@ -21,16 +22,17 @@ function stringCompressor(str) {
   let lastChar = str[0];
   let compressed = '';
 
-  for (let char of str) {
+  _.each(str, (char) => {
     if (char !== lastChar) {
-      compressed += lastChar + count;
+      compressed = `${compressed}${lastChar}${count}`;
       count = 1;
       lastChar = char;
     } else {
       ++count;
     }
-  }
-  compressed += lastChar + count;
+  });
+
+  compressed = `${compressed}${lastChar}${count}`;
   return compressed.length < str.length ? compressed : str;
 }
 
