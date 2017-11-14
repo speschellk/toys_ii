@@ -17,7 +17,7 @@ class HeapSort {
       this.sink(a, i);
     }
     for (let j = a.length - 1; j >= 0; j--) {
-      a = swap(a, j, 0);
+      swap(a, j, 0);
       --this.len;
       this.sink(a, 0);
     }
@@ -36,7 +36,7 @@ class HeapSort {
       max = right;
     }
     if (max !== i) {
-      a = swap(a, i, max);
+      swap(a, i, max);
       this.sink(a, max);
     }
   }

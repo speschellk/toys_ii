@@ -1,3 +1,5 @@
+const swap = require('./swap');
+
 class InsertionSort {
   constructor() {
     this.bigO = 'O(n^2)';
@@ -13,13 +15,21 @@ class InsertionSort {
       let temp = a[i];
       let j = i - 1;
       for (j; j >= 0 && a[j] > temp; j--) {
-        a[j + 1] = a[j];
+        swap(a, j + 1, j);
       }
-      a[j + 1] = temp;
+      if (typeof a === 'string') {
+        a = a.split('');
+        a[j + 1] = temp;
+        a = a.join('');
+        console.log('a is:', a);
+      } else {
+        a[j + 1] = temp;
+      }
     }
+
     return a;
   }
-};
+}
 
 const insertionSort = new InsertionSort().insertionSort;
 module.exports = { insertionSort, InsertionSort };
