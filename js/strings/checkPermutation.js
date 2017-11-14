@@ -1,3 +1,4 @@
+const { insertionSort } = require('../../sorts/insertion');
 /*
 Given two strings, write a method to decide whether one is a permutation of the other.
 
@@ -28,7 +29,7 @@ str2 = '11234'
 return false
 */
 
-// Time: O(s1 + s2) wrt string lengths
+// Time: O(s1 + s2) wrt string length
 // Space: O(s1) wrt string1 length
 function isPermutation(str1, str2) {
   if (!str1 || !str2) return null;
@@ -53,4 +54,25 @@ function isPermutation(str1, str2) {
   return charMap.size ? false : true;
 }
 
-module.exports = isPermutation;
+/* ---------------------------------------------------------------------------------------- */
+
+// Sort strings using insertion sort, then compare characters
+// Heap sort has better time complexity, but can't use since data are nearly sorted
+
+// Time: O(n^2) wrt string length
+// Space: O(1)
+function isPermutationSort(str1, str2) {
+  if (!str1 || !str2) return null;
+  if (str1.length !== str2.length) return false;
+
+  str1 = insertionSort(str1);
+  str2 = insertionSort(str2);
+  for (let i = 0; i < str1.length; i++) {
+    if (str1[i] !== str2[i]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+module.exports = { isPermutation, isPermutationSort };
