@@ -1,3 +1,5 @@
+const swap = require('./swap');
+
 class BubbleSort {
   constructor() {
     this.bigO = 'O(n^2)';
@@ -15,7 +17,7 @@ class BubbleSort {
       swapped = false;
       for (let i = 0; i < a.length; i++) {
         if (a[i] > a[i + 1]) {
-          [a[i], a[i + 1]] = [a[i + 1], a[i]];
+          a = swap(a, i, i+1);
           swapped = true;
         }
       }

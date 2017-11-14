@@ -1,3 +1,5 @@
+const swap = require('./swap');
+
 class HeapSort {
   constructor(a) {
     this.bigO = 'O(n log(n))';
@@ -15,7 +17,7 @@ class HeapSort {
       this.sink(a, i);
     }
     for (let j = a.length - 1; j >= 0; j--) {
-      [a[j], a[0]] = [a[0], a[j]];
+      a = swap(a, j, 0);
       --this.len;
       this.sink(a, 0);
     }
@@ -34,7 +36,7 @@ class HeapSort {
       max = right;
     }
     if (max !== i) {
-      [a[i], a[max]] = [a[max], a[i]];
+      a = swap(a, i, max);
       this.sink(a, max);
     }
   }
